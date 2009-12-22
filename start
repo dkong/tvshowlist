@@ -1,0 +1,4 @@
+#!/bin/bash
+python2.5 /usr/local/bin/dev_appserver.py helloworld
+
+

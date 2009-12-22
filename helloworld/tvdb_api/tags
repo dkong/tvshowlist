@@ -1,0 +1,148 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Actor	tvdb_api.py	/^class Actor(dict):$/;"	c
+Actors	tvdb_api.py	/^class Actors(list):$/;"	c
+BaseUI	tvdb_api.py	/^from tvdb_ui import BaseUI, ConsoleUI$/;"	i
+BaseUI	tvdb_ui.py	/^class BaseUI:$/;"	c
+CacheHandler	cache.py	/^class CacheHandler(urllib2.BaseHandler):$/;"	c
+CacheHandler	tvdb_api.py	/^from cache import CacheHandler$/;"	i
+CacheThreadTest	cache.py	/^        class CacheThreadTest(Thread):$/;"	c	function:CachedResponse.main
+CachedResponse	cache.py	/^class CachedResponse(StringIO.StringIO):$/;"	c
+ConsoleUI	tvdb_api.py	/^from tvdb_ui import BaseUI, ConsoleUI$/;"	i
+ConsoleUI	tvdb_ui.py	/^class ConsoleUI(BaseUI):$/;"	c
+ElementTree	tvdb_api.py	/^    import xml.etree.ElementTree as ElementTree$/;"	i
+ElementTree	tvdb_api.py	/^    import xml.etree.cElementTree as ElementTree$/;"	i
+Episode	tvdb_api.py	/^class Episode(dict):$/;"	c
+OptionParser	tvnamer.py	/^from optparse import OptionParser$/;"	i
+RLock	cache.py	/^from threading import RLock$/;"	i
+Season	tvdb_api.py	/^class Season(dict):$/;"	c
+Show	tvdb_api.py	/^class Show(dict):$/;"	c
+ShowContainer	tvdb_api.py	/^class ShowContainer(dict):$/;"	c
+StringIO	cache.py	/^import StringIO$/;"	i
+Thread	cache.py	/^        from threading import Thread$/;"	i
+Tvdb	tvdb_api.py	/^class Tvdb:$/;"	c
+Tvdb	tvnamer.py	/^from tvdb_api import Tvdb$/;"	i
+__all__	tvdb_exceptions.py	/^__all__ = ["tvdb_error", "tvdb_userabort", "tvdb_shownotfound",$/;"	v
+__author__	cache.py	/^__author__ = "dbr\/Ben"$/;"	v
+__author__	tvdb_api.py	/^__author__ = "dbr\/Ben"$/;"	v
+__author__	tvdb_exceptions.py	/^__author__ = "dbr\/Ben"$/;"	v
+__author__	tvdb_ui.py	/^__author__ = "dbr\/Ben"$/;"	v
+__author__	tvnamer.py	/^__author__ = "dbr\/Ben"$/;"	v
+__getitem__	tvdb_api.py	/^    def __getitem__(self, episode_number):$/;"	m	class:Season	file:
+__getitem__	tvdb_api.py	/^    def __getitem__(self, key):$/;"	m	class:Episode	file:
+__getitem__	tvdb_api.py	/^    def __getitem__(self, key):$/;"	m	class:Show	file:
+__getitem__	tvdb_api.py	/^    def __getitem__(self, key):$/;"	m	class:Tvdb	file:
+__init__	cache.py	/^    def __init__(self, cache_location, max_age = 21600):$/;"	m	class:CacheHandler
+__init__	cache.py	/^    def __init__(self, cache_location, url, set_cache_header=True):$/;"	m	class:CachedResponse
+__init__	tvdb_api.py	/^    def __init__(self):$/;"	m	class:Show
+__init__	tvdb_api.py	/^    def __init__(self,$/;"	m	class:Tvdb
+__init__	tvdb_ui.py	/^    def __init__(self, config, log):$/;"	m	class:BaseUI
+__repr__	tvdb_api.py	/^    def __repr__(self):$/;"	m	class:Actor	file:
+__repr__	tvdb_api.py	/^    def __repr__(self):$/;"	m	class:Episode	file:
+__repr__	tvdb_api.py	/^    def __repr__(self):$/;"	m	class:Season	file:
+__repr__	tvdb_api.py	/^    def __repr__(self):$/;"	m	class:Show	file:
+__repr__	tvdb_api.py	/^    def __repr__(self):$/;"	m	class:Tvdb	file:
+__version__	cache.py	/^__version__ = "1.2.2"$/;"	v
+__version__	tvdb_api.py	/^__version__ = "1.2.2"$/;"	v
+__version__	tvdb_exceptions.py	/^__version__ = "1.2.2"$/;"	v
+__version__	tvdb_ui.py	/^__version__ = "1.2.2"$/;"	v
+__version__	tvnamer.py	/^__version__ = "1.2.2"$/;"	v
+_cleanData	tvdb_api.py	/^    def _cleanData(self, data):$/;"	m	class:Tvdb
+_displaySeries	tvdb_ui.py	/^    def _displaySeries(self, allSeries):$/;"	m	class:ConsoleUI
+_getSeries	tvdb_api.py	/^    def _getSeries(self, series):$/;"	m	class:Tvdb
+_getShowData	tvdb_api.py	/^    def _getShowData(self, sid, language):$/;"	m	class:Tvdb
+_getTempDir	tvdb_api.py	/^    def _getTempDir(self):$/;"	m	class:Tvdb
+_getetsrc	tvdb_api.py	/^    def _getetsrc(self, url):$/;"	m	class:Tvdb
+_initLogger	tvdb_api.py	/^    def _initLogger(self):$/;"	m	class:Tvdb
+_loadUrl	tvdb_api.py	/^    def _loadUrl(self, url, recache = False):$/;"	m	class:Tvdb
+_nameToSid	tvdb_api.py	/^    def _nameToSid(self, name):$/;"	m	class:Tvdb
+_parseActors	tvdb_api.py	/^    def _parseActors(self, sid):$/;"	m	class:Tvdb
+_parseBanners	tvdb_api.py	/^    def _parseBanners(self, sid):$/;"	m	class:Tvdb
+_setItem	tvdb_api.py	/^    def _setItem(self, sid, seas, ep, attrib, value):$/;"	m	class:Tvdb
+_setShowData	tvdb_api.py	/^    def _setShowData(self, sid, key, value):$/;"	m	class:Tvdb
+author	setup_tvdb_api.py	/^author='dbr\/Ben',$/;"	v
+author	setup_tvnamer.py	/^author='dbr\/Ben',$/;"	v
+cache_lock	cache.py	/^cache_lock = RLock()$/;"	v
+calculate_cache_path	cache.py	/^def calculate_cache_path(cache_location, url):$/;"	f
+check_cache_time	cache.py	/^def check_cache_time(path, max_age):$/;"	f
+classifiers	setup_tvdb_api.py	/^classifiers=[$/;"	v
+classifiers	setup_tvnamer.py	/^classifiers=[$/;"	v
+cleanName	tvnamer.py	/^def cleanName(name):$/;"	f
+config	tvnamer.py	/^config = {}$/;"	v
+default_open	cache.py	/^    def default_open(self, request):$/;"	m	class:CacheHandler
+description	setup_tvdb_api.py	/^description='Interface to thetvdb.com',$/;"	v
+description	setup_tvnamer.py	/^description='Automatic TV episode namer',$/;"	v
+entry_points	setup_tvnamer.py	/^entry_points = {$/;"	v
+errno	cache.py	/^import errno$/;"	i
+etree	tvdb_api.py	/^    import xml.etree.ElementTree as ElementTree$/;"	i
+etree	tvdb_api.py	/^    import xml.etree.cElementTree as ElementTree$/;"	i
+exists_in_cache	cache.py	/^def exists_in_cache(cache_location, url, max_age):$/;"	f
+findFiles	tvnamer.py	/^def findFiles(args, recursive = False, verbose = False):$/;"	f
+formatName	tvnamer.py	/^def formatName(cfile):$/;"	f
+geturl	cache.py	/^    def geturl(self):$/;"	m	class:CachedResponse
+http_response	cache.py	/^    def http_response(self, request, response):$/;"	m	class:CacheHandler
+httplib	cache.py	/^import httplib$/;"	i
+info	cache.py	/^    def info(self):$/;"	m	class:CachedResponse
+lastdata	cache.py	/^            lastdata = None$/;"	v	class:CachedResponse.main.CacheThreadTest
+license	setup_tvdb_api.py	/^license='GPLv2',$/;"	v
+license	setup_tvnamer.py	/^license='GPLv2',$/;"	v
+locked_function	cache.py	/^def locked_function(origfunc):$/;"	f
+logging	tvdb_api.py	/^import logging$/;"	i
+main	cache.py	/^    def main():$/;"	m	class:CachedResponse
+main	tvdb_api.py	/^def main():$/;"	f
+main	tvnamer.py	/^def main():$/;"	f
+md5	cache.py	/^from hashlib import md5$/;"	i
+name	setup_tvdb_api.py	/^name = 'tvdb_api',$/;"	v
+name	setup_tvnamer.py	/^name = 'tvnamer',$/;"	v
+os	cache.py	/^import os$/;"	i
+os	tvdb_api.py	/^import os$/;"	i
+os	tvnamer.py	/^import os, sys, re$/;"	i
+processFile	tvnamer.py	/^def processFile(t, opts, cfile):$/;"	f
+processNames	tvnamer.py	/^def processNames(names, verbose=False):$/;"	f
+processSingleName	tvnamer.py	/^def processSingleName(name, verbose=False):$/;"	f
+py_modules	setup_tvdb_api.py	/^py_modules = ['tvdb_api', 'tvdb_ui', 'tvdb_exceptions', 'cache'],$/;"	v
+py_modules	setup_tvnamer.py	/^py_modules = ['tvnamer'],$/;"	v
+re	tvnamer.py	/^import os, sys, re$/;"	i
+recache	cache.py	/^    def recache(self):$/;"	m	class:CachedResponse
+renameFile	tvnamer.py	/^def renameFile(oldfile, newfile, force=False):$/;"	f
+run	cache.py	/^            def run(self):$/;"	m	class:CachedResponse.main.CacheThreadTest
+search	tvdb_api.py	/^    def search(self, term = None, key = None):$/;"	m	class:Episode
+search	tvdb_api.py	/^    def search(self, term = None, key = None):$/;"	m	class:Season
+search	tvdb_api.py	/^    def search(self, term = None, key = None):$/;"	m	class:Show
+selectSeries	tvdb_ui.py	/^    def selectSeries(self, allSeries):$/;"	m	class:BaseUI
+selectSeries	tvdb_ui.py	/^    def selectSeries(self, allSeries):$/;"	m	class:ConsoleUI
+setup	setup_tvdb_api.py	/^from setuptools import setup$/;"	i
+setup	setup_tvnamer.py	/^from setuptools import setup$/;"	i
+store_in_cache	cache.py	/^def store_in_cache(cache_location, url, response):$/;"	f
+sys	tvdb_api.py	/^import sys$/;"	i
+sys	tvnamer.py	/^import os, sys, re$/;"	i
+tempfile	tvdb_api.py	/^import tempfile$/;"	i
+time	cache.py	/^import time$/;"	i
+tvdb_attributenotfound	tvdb_exceptions.py	/^class tvdb_attributenotfound(Exception):$/;"	c
+tvdb_episodenotfound	tvdb_exceptions.py	/^class tvdb_episodenotfound(Exception):$/;"	c
+tvdb_error	tvdb_api.py	/^from tvdb_exceptions import (tvdb_error, tvdb_userabort, tvdb_shownotfound,$/;"	i
+tvdb_error	tvdb_exceptions.py	/^class tvdb_error(Exception):$/;"	c
+tvdb_error	tvnamer.py	/^from tvdb_api import (tvdb_error, tvdb_shownotfound, tvdb_seasonnotfound,$/;"	i
+tvdb_seasonnotfound	tvdb_exceptions.py	/^class tvdb_seasonnotfound(Exception):$/;"	c
+tvdb_seasonnotfound	tvnamer.py	/^from tvdb_api import (tvdb_error, tvdb_shownotfound, tvdb_seasonnotfound,$/;"	i
+tvdb_shownotfound	tvdb_api.py	/^from tvdb_exceptions import (tvdb_error, tvdb_userabort, tvdb_shownotfound,$/;"	i
+tvdb_shownotfound	tvdb_exceptions.py	/^class tvdb_shownotfound(Exception):$/;"	c
+tvdb_shownotfound	tvnamer.py	/^from tvdb_api import (tvdb_error, tvdb_shownotfound, tvdb_seasonnotfound,$/;"	i
+tvdb_userabort	tvdb_api.py	/^from tvdb_exceptions import (tvdb_error, tvdb_userabort, tvdb_shownotfound,$/;"	i
+tvdb_userabort	tvdb_exceptions.py	/^class tvdb_userabort(Exception):$/;"	c
+tvdb_userabort	tvdb_ui.py	/^from tvdb_exceptions import tvdb_userabort$/;"	i
+url	setup_tvdb_api.py	/^url='http:\/\/github.com\/dbr\/tvdb_api\/tree\/master',$/;"	v
+url	setup_tvnamer.py	/^url='http:\/\/github.com\/dbr\/tvdb_api\/tree\/master',$/;"	v
+urllib	tvdb_api.py	/^import urllib$/;"	i
+urllib2	cache.py	/^import urllib2$/;"	i
+urllib2	tvdb_api.py	/^import urllib2$/;"	i
+version	setup_tvdb_api.py	/^version='1.2.2',$/;"	v
+version	setup_tvnamer.py	/^version='1.2.2',$/;"	v
+with_statement	cache.py	/^from __future__ import with_statement$/;"	i
+wrapped	cache.py	/^    def wrapped(*args, **kwargs):$/;"	f	function:locked_function
+xml	tvdb_api.py	/^    import xml.etree.ElementTree as ElementTree$/;"	i
+xml	tvdb_api.py	/^    import xml.etree.cElementTree as ElementTree$/;"	i
