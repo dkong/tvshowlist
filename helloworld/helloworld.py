@@ -10,7 +10,7 @@ from google.appengine.ext.webapp import template
 from tvdb_api import tvdb_api 
 from tvdb_api import tvdb_ui
 
-t = tvdb_api.Tvdb(cache=False, custom_ui=tvdb_ui.ClassUI)
+t = tvdb_api.Tvdb(cache=False, debug=True, custom_ui=tvdb_ui.ClassUI)
 
 class Greeting(db.Model):
 	author = db.UserProperty()
@@ -49,22 +49,39 @@ class Guestbook(webapp.RequestHandler):
 		greeting.put()
 		self.redirect('/')
 
+class SeriesAdd(webapp.RequestHandler):
+	def post(self):
+		page = self.response.out
+		series_name = cgi.escape(self.request.get('series'))
+
+		t.config['custom_ui'] = None
+		series = t[series_name]
+
+		episodes_list = []
+		for season in series:
+			for episode in series[season]:
+				episode_name = "S%02dE%02d %s" % (season, episode, series[season][episode]['episodename'])
+				episodes_list.append(episode_name)
+
+		template_values = {
+				'episodes': episodes_list,
+				}
+
+		path = os.path.join(os.path.dirname(__file__), 'series_add.html')
+		self.response.out.write(template.render(path, template_values))
+
+		t.config['custom_ui'] = tvdb_ui.ClassUI
+
 class MovieResults(webapp.RequestHandler):
 	def post(self):
 		page = self.response.out
 		movie_name = cgi.escape(self.request.get('movie'))
 
+		t.config['custom_ui'] = tvdb_ui.ClassUI
 		try:
 			series_results = t._getSeries(movie_name)
 		except:
 			series_results = []
-		#print episode['episodename'] # Print episode name
-
-		"""page.write('<html><body>You wrote:<pre>')
-		for series in series_results:
-			page.write(series['seriesname']+'\n')
-		page.write('</pre></body></html>')
-		"""
 
 		series_names = []
 		for series in series_results:
@@ -80,7 +97,8 @@ class MovieResults(webapp.RequestHandler):
 application = webapp.WSGIApplication(
 		[('/', MainPage),
 		 ('/sign', Guestbook),
-		 ('/results', MovieResults)],
+		 ('/results', MovieResults),
+		 ('/series_add', SeriesAdd)],
 		debug=True)
 
 def main():

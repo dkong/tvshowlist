@@ -4,10 +4,10 @@
 	</head>
 
 	<body>
-		<form action="/series_add" method="post">
+		<form action="/episodes_add" method="post">
 			<table>
-				{% for series in series_results %}
-				<tr><td><input type="radio" name="series" value="{{ series }}">{{ series }}</td></tr>
+				{% for episode in episodes %}
+						<tr><td><input type="radio" name="series" value="test">{{ episode }}</td></tr>
 				{% endfor %}
 			</table>
 			<input type="submit" value="Select Series" />
