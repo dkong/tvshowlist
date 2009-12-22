@@ -60,10 +60,22 @@ class MovieResults(webapp.RequestHandler):
 			series_results = []
 		#print episode['episodename'] # Print episode name
 
-		page.write('<html><body>You wrote:<pre>')
+		"""page.write('<html><body>You wrote:<pre>')
 		for series in series_results:
 			page.write(series['seriesname']+'\n')
 		page.write('</pre></body></html>')
+		"""
+
+		series_names = []
+		for series in series_results:
+			series_names.append(series['seriesname'])
+
+		template_values = {
+				'series_results': series_names,
+				}
+
+		path = os.path.join(os.path.dirname(__file__), 'results.html')
+		self.response.out.write(template.render(path, template_values))
 
 application = webapp.WSGIApplication(
 		[('/', MainPage),

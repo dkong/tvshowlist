@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+	</head>
+
+	<body>
+		<form action="/series" method="post">
+			<table>
+				{% for series in series_results %}
+				<tr><td><input type="radio" name="series" value="{{ series }}">{{ series }}</td></tr>
+				{% endfor %}
+			</table>
+		</form>
+	</body>
+</html>
+
