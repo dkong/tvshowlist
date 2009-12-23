@@ -1,17 +1,17 @@
 <html>
-	<head>
-		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
-	</head>
+    <head>
+        <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    </head>
 
-	<body>
-		<form action="/episodes_add" method="post">
-			<table>
-				{% for episode in episodes %}
-						<tr><td><input type="radio" name="series" value="test">{{ episode }}</td></tr>
-				{% endfor %}
-			</table>
-			<input type="submit" value="Select Series" />
-		</form>
-	</body>
+    <body>
+        <form action="/episode_add" method="post">
+            <table>
+                {% for episode in episodes %}
+                <tr><td><input type="checkbox" name="episode" value="{{ episode.season }}` {{ episode.episode }}` {{ episode.name }}">{{ episode.name }}</td></tr>
+                {% endfor %}
+            </table>
+            <input type="submit" value="Select Series" />
+        </form>
+    </body>
 </html>
 

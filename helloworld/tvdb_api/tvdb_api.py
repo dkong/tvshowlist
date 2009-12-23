@@ -650,6 +650,9 @@ class Tvdb:
         seriesInfoEt = self._getetsrc(
             self.config['url_seriesInfo'] % (sid, getShowInLanguage)
         )
+
+        self._setShowData(sid, 'sid', sid)
+
         for curInfo in seriesInfoEt.findall("Series")[0]:
             tag = curInfo.tag.lower()
             value = curInfo.text
