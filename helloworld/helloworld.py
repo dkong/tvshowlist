@@ -47,6 +47,7 @@ class EpisodeTemplate:
 class MyListPage(webapp.RequestHandler):
     def get(self):
         myshowdata_query = MyShowData.all()
+        myshowdata_query.order("-series_id")
         myshowdatas = myshowdata_query.fetch(1000)
 
         episodes_list = []
