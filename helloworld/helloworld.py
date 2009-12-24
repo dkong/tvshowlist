@@ -10,7 +10,7 @@ from google.appengine.ext.webapp import template
 from tvdb_api import tvdb_api 
 from tvdb_api import tvdb_ui
 
-t = tvdb_api.Tvdb(cache=False, debug=True, custom_ui=tvdb_ui.ClassUI)
+t = tvdb_api.Tvdb(cache=False, debug=True, custom_ui=tvdb_ui.ClassUI, language='en')
 
 class Greeting(db.Model):
     author = db.UserProperty()
@@ -27,6 +27,37 @@ class PersistentData(db.Model):
     """Data that nees to be accessible from multiple pages
     """
     series_id = db.IntegerProperty()
+
+class EpisodeTemplate:
+    season = -1
+    episode = -1
+    name = "None"
+    series = "None"
+    key = "None"
+
+    def __init__(self, series_name, season_num, episode_num, episode_name, key):
+        self.season = season_num
+        self.episode = episode_num
+        self.name = episode_name
+        self.series = series_name
+        self.key = key
+
+class MyListPage(webapp.RequestHandler):
+    def post(self):
+        myshowdata_query = MyShowData.all()
+        myshowdatas = myshowdata_query.fetch(10)
+
+        episodes_list = []
+        for episode in myshowdatas:
+            episodeTemplate = EpisodeTemplate(t[episode.series_id]['seriesname'], episode.season_number, episode.episode_number, t[episode.series_id][episode.season_number][episode.episode_number]['episodename'], str(episode.key()))
+            episodes_list.append(episodeTemplate)
+
+        template_values = {
+                'episodes': episodes_list,
+                }
+
+        path = os.path.join(os.path.dirname(__file__), 'my_list.html')
+        self.response.out.write(template.render(path, template_values))
 
 class MainPage(webapp.RequestHandler):
     def get(self):
@@ -64,25 +95,33 @@ class EpisodeAdd(webapp.RequestHandler):
     def post(self):
         page = self.response.out
         episodes = self.request.get_all('episode')
+
         persistentData = PersistentData.all().get()
         page.write(str(persistentData.series_id))
         page.write('<br>')
+
         for episode in episodes: 
             episode_data = episode.split('`')
-            page.write("%s x %s : %s" % (episode_data[0], episode_data[1], episode_data[2]))
+
+            myshowdata = MyShowData()
+            myshowdata.series_id = persistentData.series_id
+            myshowdata.season_number = int(episode_data[0])
+            myshowdata.episode_number = int(episode_data[1])
+            myshowdata.put()
+
+            page.write("S%02dE%02d : %s" % (int(episode_data[0]), int(episode_data[1]), episode_data[2]))
             page.write('<br>')
 
+class EpisodeDelete(webapp.RequestHandler):
+    def post(self):
+        page = self.response.out
+        episodes = self.request.get_all('episode')
 
-class EpisodeTemplate:
-    season = -1
-    episode = -1
-    name = "None"
+        for episode_key in episodes: 
+            episode = db.get(db.Key(episode_key))
+            page.write("Deleting %d %d %d<br>" % (episode.series_id, episode.season_number, episode.episode_number))
+            episode.delete()
 
-    def __init__(self, season_num, episode_num, episode_name):
-        self.season = season_num
-        self.episode = episode_num
-        self.name = episode_name
-    
 class SeriesAdd(webapp.RequestHandler):
     def post(self):
         page = self.response.out
@@ -100,7 +139,7 @@ class SeriesAdd(webapp.RequestHandler):
         episodes_list = []
         for season in series:
             for episode in series[season]:
-                episodeTemplate = EpisodeTemplate(season, episode, series[season][episode]['episodename'])
+                episodeTemplate = EpisodeTemplate(series['seriesname'], season, episode, series[season][episode]['episodename'])
                 episodes_list.append(episodeTemplate)
 
         template_values = {
@@ -139,7 +178,9 @@ application = webapp.WSGIApplication(
          ('/sign', Guestbook),
          ('/results', MovieResults),
          ('/series_add', SeriesAdd),
-         ('/episode_add', EpisodeAdd)],
+         ('/episode_add', EpisodeAdd),
+         ('/my_list', MyListPage),
+         ('/episode_delete', EpisodeDelete)],
         debug=True)
 
 def main():

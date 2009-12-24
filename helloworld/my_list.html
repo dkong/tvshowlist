@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+	</head>
+
+	<body>
+        <form action="/episode_delete" method="post">
+            <table>
+            {% for show in episodes %}
+                <tr><td><input type="checkbox" name="episode" value="{{ show.key }}">{{ show.series }} : S{{ show.season }}E{{ show.episode }} : {{ show.name }}</td></tr>
+            {% endfor %}
+            </table>
+            <input type="submit" value="Delete Episodes" />
+        </form>
+	</body>
+</html>
+
