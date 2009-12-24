@@ -34,18 +34,20 @@ class EpisodeTemplate:
     name = "None"
     series = "None"
     key = "None"
+    exists = False
 
-    def __init__(self, series_name, season_num, episode_num, episode_name, key=None):
+    def __init__(self, series_name, season_num, episode_num, episode_name, key=None, already_exists=False):
         self.season = season_num
         self.episode = episode_num
         self.name = episode_name
         self.series = series_name
         self.key = key
+        self.exists = already_exists
 
 class MyListPage(webapp.RequestHandler):
-    def post(self):
+    def get(self):
         myshowdata_query = MyShowData.all()
-        myshowdatas = myshowdata_query.fetch(10)
+        myshowdatas = myshowdata_query.fetch(1000)
 
         episodes_list = []
         for episode in myshowdatas:
@@ -71,10 +73,13 @@ class MainPage(webapp.RequestHandler):
             url = users.create_login_url(self.request.uri)
             url_linktext = "Login"
 
+        url_mylist = '/my_list'
+
         template_values = {
                 'greetings': greetings,
                 'url': url,
-                'url_linktext': url_linktext
+                'url_linktext': url_linktext,
+                'url_mylist': url_mylist
                 }
 
         path = os.path.join(os.path.dirname(__file__), 'index.html')
@@ -129,6 +134,7 @@ class SeriesAdd(webapp.RequestHandler):
 
         t.config['custom_ui'] = None
         series = t[series_name]
+        series_name = series['seriesname']
 
         persistentData = PersistentData.all().get()
         if not persistentData:
@@ -139,10 +145,19 @@ class SeriesAdd(webapp.RequestHandler):
         episodes_list = []
         for season in series:
             for episode in series[season]:
-                episodeTemplate = EpisodeTemplate(series['seriesname'], season, episode, series[season][episode]['episodename'])
+                # Does this episode already exist in our personal list?
+                myshowdata_query = MyShowData.all()
+                myshowdata_query.filter("series_id =", persistentData.series_id)
+                myshowdata_query.filter("season_number =", season)
+                myshowdata_query.filter("episode_number =", episode)
+                myshowdata = myshowdata_query.fetch(1000)
+                exists = len(myshowdata) != 0
+
+                episodeTemplate = EpisodeTemplate(series_name, season, episode, series[season][episode]['episodename'], already_exists=exists)
                 episodes_list.append(episodeTemplate)
 
         template_values = {
+                'series_name': series_name,
                 'episodes': episodes_list,
                 }
 

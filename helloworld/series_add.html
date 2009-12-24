@@ -4,13 +4,19 @@
     </head>
 
     <body>
+        <h1>{{ series_name }}</h1>
         <form action="/episode_add" method="post">
-            <table>
+            <table border>
+                <tr><td>Add</td><td>S</td><td>E</td><td>Episode Name</td></td>
                 {% for episode in episodes %}
-                <tr><td><input type="checkbox" name="episode" value="{{ episode.season }}` {{ episode.episode }}` {{ episode.name }}">{{ episode.name }}</td></tr>
+                    {% if episode.exists %}
+                        <tr><td><input type="checkbox" checked="yes" disabled name="episode_exists" value="{{ episode.season }}` {{ episode.episode }}` {{ episode.name }}"></td><td>{{ episode.season }}</td><td>{{ episode.episode }}</td><td>{{ episode.name }}</td></tr>
+                    {% else %}
+                        <tr><td><input type="checkbox" name="episode" value="{{ episode.season }}` {{ episode.episode }}` {{ episode.name }}"></td><td>{{ episode.season }}</td><td>{{ episode.episode }}</td><td>{{ episode.name }}</td></tr>
+                    {% endif %}
                 {% endfor %}
             </table>
-            <input type="submit" value="Select Series" />
+            <input type="submit" value="Add Episodes" />
         </form>
     </body>
 </html>
