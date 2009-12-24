@@ -35,7 +35,7 @@ class EpisodeTemplate:
     series = "None"
     key = "None"
 
-    def __init__(self, series_name, season_num, episode_num, episode_name, key):
+    def __init__(self, series_name, season_num, episode_num, episode_name, key=None):
         self.season = season_num
         self.episode = episode_num
         self.name = episode_name
