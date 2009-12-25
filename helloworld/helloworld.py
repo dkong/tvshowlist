@@ -10,7 +10,7 @@ from google.appengine.ext.webapp import template
 from tvdb_api import tvdb_api 
 from tvdb_api import tvdb_ui
 
-t = tvdb_api.Tvdb(cache=False, debug=True, custom_ui=tvdb_ui.ClassUI, language='en')
+t = tvdb_api.Tvdb(cache=False, debug=True, custom_ui=tvdb_ui.ClassUI, language='en', apikey='01F3225B535BCBD6')
 
 class Greeting(db.Model):
     author = db.UserProperty()
