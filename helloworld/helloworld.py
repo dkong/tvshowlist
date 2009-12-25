@@ -21,6 +21,7 @@ class MyShowData(db.Model):
     series_id = db.IntegerProperty()
     season_number = db.IntegerProperty()
     episode_number = db.IntegerProperty()
+    user = db.UserProperty()
     date = db.DateTimeProperty(auto_now_add=True)
 
 class PersistentData(db.Model):
@@ -47,6 +48,7 @@ class EpisodeTemplate:
 class MyListPage(webapp.RequestHandler):
     def get(self):
         myshowdata_query = MyShowData.all()
+        myshowdata_query.filter("user =", users.get_current_user())
         myshowdata_query.order("-series_id")
         myshowdatas = myshowdata_query.fetch(1000)
 
@@ -67,7 +69,8 @@ class MainPage(webapp.RequestHandler):
         greetings_query = Greeting.all().order('-date')
         greetings = greetings_query.fetch(10)
 
-        if users.get_current_user():
+        user = users.get_current_user()
+        if user:
             url = users.create_logout_url(self.request.uri)
             url_linktext = "Logout"
         else:
@@ -80,7 +83,8 @@ class MainPage(webapp.RequestHandler):
                 'greetings': greetings,
                 'url': url,
                 'url_linktext': url_linktext,
-                'url_mylist': url_mylist
+                'url_mylist': url_mylist,
+                'user': user
                 }
 
         path = os.path.join(os.path.dirname(__file__), 'index.html')
@@ -113,6 +117,7 @@ class EpisodeAdd(webapp.RequestHandler):
             myshowdata.series_id = persistentData.series_id
             myshowdata.season_number = int(episode_data[0])
             myshowdata.episode_number = int(episode_data[1])
+            myshowdata.user = users.get_current_user()
             myshowdata.put()
 
             page.write("S%02dE%02d : %s" % (int(episode_data[0]), int(episode_data[1]), episode_data[2]))

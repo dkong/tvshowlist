@@ -4,26 +4,20 @@
 	</head>
 
 	<body>
-		{% for greeting in greetings %}
-			{% if greeting.author %}
-			<b>{{ greeting.author.nickname }} {{ greeting.date}}</b> wrote:
-			{% else %}
-				An anonymous person wrote:
-			{% endif %}
-			<blockquote>{{ greeting.content }}</blockquote>
-		{% endfor %}
+        {% if user %}
+            <form action="/results" method="post">
+                <input type="text" name="movie" />
+                <input type="submit" value="Search" />
+            </form>
 
-		<form action="/sign" method="post">
-			<div><textarea name="content" rows="1" cols="30"></textarea></div>
-			<div><input type="submit" value="Sign Guestbook"></div>
-		</form>
-
-		<form action="/results" method="post">
-			<input type="text" name="movie" />
-			<input type="submit" value="Search" />
-		</form>
-
-		<a href="{{ url_mylist }}">My List</a>
+            <a href="{{ url_mylist }}">My List</a>
+            <br>
+            Logged in as: {{ user.nickname }}
+        {% else %}
+            Not logged in.  Please login:
+        {% endif %}
+        <br>
+        <a href="{{ url }}">{{ url_linktext }}</a>
 	</body>
 </html>
 
