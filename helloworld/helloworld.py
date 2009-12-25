@@ -50,6 +50,8 @@ class MyListPage(webapp.RequestHandler):
         myshowdata_query = MyShowData.all()
         myshowdata_query.filter("user =", users.get_current_user())
         myshowdata_query.order("-series_id")
+        myshowdata_query.order("season_number")
+        myshowdata_query.order("episode_number")
         myshowdatas = myshowdata_query.fetch(1000)
 
         episodes_list = []

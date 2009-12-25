@@ -15,3 +15,26 @@ indexes:
   - name: user
   - name: series_id
     direction: desc
+
+- kind: MyShowData
+  properties:
+  - name: user
+  - name: series_id
+    direction: desc
+  - name: season_number
+
+- kind: MyShowData
+  properties:
+  - name: user
+  - name: series_id
+    direction: desc
+  - name: season_number
+  - name: episode_number
+
+- kind: MyShowData
+  properties:
+  - name: user
+  - name: series_id
+    direction: desc
+  - name: season_number
+    direction: desc
