@@ -1,0 +1,16 @@
+About
+
+tvshowlist (http://tvshowlist.appspot.com/) is a simple online tool to track your personal collection of TV shows.  It hooks into the database at thetvdb.com to query show and episode information.
+
+Components
+
+Uses the nice tvdb_api python library (http://github.com/dbr/tvdb_api) along with a couple of minor modifications.  Hosted on Google App Engine (http://code.google.com/appengine/) using their python stack.
+
+License
+
+MIT License (see LICENSE file) for all files except tvdb_api which belongs to its original author.
+
+Version History
+
+3.0 (2009-12-23)
+ * Basic functionality working - add/remove tv episodes and link to google user account.
