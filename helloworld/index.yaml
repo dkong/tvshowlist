@@ -12,12 +12,6 @@ indexes:
 
 - kind: MyShowData
   properties:
-  - name: -user
-  - name: series_id
-    direction: desc
-
-- kind: MyShowData
-  properties:
   - name: user
   - name: series_id
     direction: desc
